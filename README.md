@@ -6,6 +6,8 @@ to be retrained with the same cadence, necessitating an end-to-end pipeline that
 
 In this project you will build such a pipeline.
 
+Link to nyc_airbnb W&B report : https://wandb.ai/leida-alvarez-western-governors-university/nyc_airbnb/reports/Train-a-random-forest-model--VmlldzoxMzg5MzM4NQ
+
 ## Table of contents
 
 - [Preliminary steps](#preliminary-steps)

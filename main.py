@@ -67,13 +67,13 @@ def go(config: DictConfig):
         if "data_check" in active_steps:
             _ = mlflow.run(
                 os.path.join(hydra.utils.get_original_cwd(), "src", "data_check"),
-                entry_point="main",
+                "main",
                 parameters={
                     "csv": "clean_sample.csv:latest",
                     "ref": "clean_sample.csv:reference",
                     "kl_threshold": config["data_check"]["kl_threshold"],
-                    "min_price": config["data_check"]["min_price"],
-                    "max_price": config["data_check"]["max_price"],
+                    "min_price": config["etl"]["min_price"],
+                    "max_price": config["etl"]["max_price"],
                 },
             )
 
@@ -81,13 +81,11 @@ def go(config: DictConfig):
             _ = mlflow.run(
                 f"{config['main']['components_repository']}/train_val_test_split",
                 "main",
-                version='main',
-                env_manager="conda",
                 parameters={
                     "input": "clean_sample.csv:latest",
-                    "test_size": config["data_split"]["test_size"],
-                    "random_seed": config["data_split"]["random_seed"],
-                    "stratify_by": config["data_split"]["stratify_by"]
+                    "test_size": config["modeling"]["test_size"],
+                    "random_seed": config["modeling"]["random_seed"],
+                    "stratify_by": config["modeling"]["stratify_by"]
                 },
             )
 

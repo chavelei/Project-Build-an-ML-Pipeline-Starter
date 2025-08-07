@@ -106,7 +106,7 @@ def go(config: DictConfig):
                 os.path.join(hydra.utils.get_original_cwd(), "src", "train_random_forest"),
                 "main",
                 parameters={
-                    "trainval_artifact": "trainval_artifact.csv:latest",
+                    "trainval_artifact": "trainval_data.csv:latest",
                     "val_size": config["modeling"]["val_size"],
                     "random_seed": config["modeling"]["random_seed"],
                     "stratify_by": config["modeling"]["stratify_by"],
@@ -115,8 +115,6 @@ def go(config: DictConfig):
                     "output_artifact": "random_forest_export"
                 },
             )            
-
-            pass
 
         if "test_regression_model" in active_steps:
 
